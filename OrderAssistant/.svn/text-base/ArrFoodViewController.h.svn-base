@@ -1,0 +1,57 @@
+//
+//  ArrFoodViewController.h
+//  OrderAssistant
+//
+//  Created by flybird on 12-10-29.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "ViewController.h"
+#import "PopoverView.h"
+
+@interface ArrFoodViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIActionSheetDelegate,PopoverViewDelegate>{
+    
+    UIButton *distantBtn;
+    UIButton *foodBtn;
+    UIButton *recommandBtn;
+    
+    UIActionSheet *actionSheet;
+    UILabel *distantLable;
+    UILabel *foodLable;
+    UILabel *recommandLable;
+    NSArray *myPickerData1;
+    NSArray *myPickerData2;
+    NSString *result;
+    
+    int btnChoice;
+    
+    UIButton *bottomButton;
+    UIButton *arrowButton;
+    BOOL expanding;
+
+}
+
+@property(nonatomic,retain) IBOutlet UIButton *distantBtn;
+@property(nonatomic,retain) IBOutlet UIButton *foodBtn;
+@property(nonatomic,retain) IBOutlet UIButton *recommandBtn;
+
+
+@property (nonatomic, retain) IBOutlet UILabel *distantLable;
+@property (nonatomic, retain) IBOutlet UILabel *foodLable;
+@property (nonatomic, retain) IBOutlet UILabel *recommandLable;
+@property (nonatomic, retain) NSArray *myPickerData1;
+@property (nonatomic, retain) NSArray *myPickerData2;
+@property (nonatomic, retain) UIActionSheet *actionSheet;
+@property (nonatomic, retain) NSString *result;
+
+@property (nonatomic) int btnChoice;
+
+@property (nonatomic, retain) IBOutlet UIButton *bottomButton;
+@property (nonatomic, retain) IBOutlet UIButton *arrowButton;
+@property (nonatomic) BOOL expanding;
+
+- (IBAction)menuButton:(id)sender;
+
+- (IBAction)buttonPress:(UIButton *)sender;
+
+@end

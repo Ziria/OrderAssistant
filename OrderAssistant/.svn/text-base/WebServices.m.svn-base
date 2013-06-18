@@ -1,0 +1,507 @@
+//
+//  WebServices.m
+//  OrderAssistant
+//
+//  Created by 潘 群 on 12-11-12.
+//
+//
+
+#import "WebServices.h"
+#import "GDataXMLNode.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+
+@implementation WebServices
+
+@synthesize resEntity;
+@synthesize restaurants;
+@synthesize userEntity;
+@synthesize users;
+
+
++(NSMutableArray *) testService{
+    NSString *webserviceUrl = [WEBSERVICE_ADDRESS stringByAppendingString:@"customerRegister"];
+    NSURL *url = [NSURL URLWithString:webserviceUrl];
+    NSLog(@"%@", url);
+    NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\
+                             <soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\
+                             <soap:Body>\
+                             <getNearShop xmlns:ns2=\"http://service.d3rim.czuft.com/\">\
+                             <arg0>%@</arg0>\
+                             <arg1>%@</arg1>\
+                             <arg2>%@</arg2>\
+                             </getNearShop>\
+                             </soap:Body>\
+                             </soap:Envelope>", @"119.962", @"31.783", @"8000"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request addRequestHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
+    [request addRequestHeader:@"SOAPAction" value:@""];
+    [request addRequestHeader:@"Content-Length" value:msgLength];
+    [request setRequestMethod:@"POST"];
+    [request appendPostData:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+     //同步调用
+    [request startSynchronous];
+    
+    NSData *responseData = [request responseData];
+    
+    NSError *error;
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:responseData options:0 error:&error];
+    NSArray *customerMembers = [doc.rootElement nodesForXPath:@"//return" error:&error];
+    //NSLog(@"%@", [doc rootElement]);
+    
+    
+    NSMutableArray *restaurants=[[NSMutableArray alloc] init];
+    
+     for (GDataXMLElement *customerMember in customerMembers) {
+       
+         ResEntity *resEntity=[[ResEntity alloc] init];
+         
+        //addTime
+        NSArray *addTimes = [customerMember elementsForName:@"addTime"];
+        if (addTimes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [addTimes objectAtIndex:0];
+            NSLog(@"addTime = %@", firstId.stringValue);
+        } else {
+            
+        }
+       
+        // address
+        NSArray *addresses = [customerMember elementsForName:@"address"];
+        if (addresses.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [addresses objectAtIndex:0];
+            resEntity.ResAddressTxt=firstId.stringValue;
+            NSLog(@"address = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // appTotalPercen
+        NSArray *appTotalPercens = [customerMember elementsForName:@"appTotalPercen"];
+        if (appTotalPercens.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [appTotalPercens objectAtIndex:0];
+            NSLog(@"appTotalPercen = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // applicationId
+        NSArray *applicationIds = [customerMember elementsForName:@"applicationId"];
+        if (applicationIds.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [applicationIds objectAtIndex:0];
+            NSLog(@"applicationId = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // avgCon
+        NSArray *avgCons = [customerMember elementsForName:@"avgCon"];
+        if (avgCons.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [avgCons objectAtIndex:0];
+            resEntity.resPriceTxt=firstId.stringValue;
+            NSLog(@"avgCon = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // bus
+        NSArray *buses = [customerMember elementsForName:@"bus"];
+        if (buses.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [buses objectAtIndex:0];
+            NSLog(@"bus = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // certificate
+        NSArray *certificates = [customerMember elementsForName:@"certificate"];
+        if (certificates.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [certificates objectAtIndex:0];
+            NSLog(@"certificate = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // code
+        NSArray *codes = [customerMember elementsForName:@"code"];
+        if (codes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [codes objectAtIndex:0];
+            NSLog(@"code = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // contacter
+        NSArray *contacters = [customerMember elementsForName:@"contacter"];
+        if (contacters.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [contacters objectAtIndex:0];
+            NSLog(@"contacter = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // grade
+        NSArray *grades = [customerMember elementsForName:@"grade"];
+        if (grades.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [grades objectAtIndex:0];
+            resEntity.ResStarGradeTxt=firstId.stringValue;
+            NSLog(@"grade = %@", firstId.stringValue);
+        } else {
+            
+        }
+         // distance
+         NSArray *distances = [customerMember elementsForName:@"distance"];
+         if (distances.count > 0) {
+             GDataXMLElement *firstId = (GDataXMLElement *) [distances objectAtIndex:0];
+             resEntity.resDistanceTxt=firstId.stringValue;
+             NSLog(@"grade = %@", firstId.stringValue);
+         } else {
+             
+         }
+
+        
+        // ico
+        NSArray *icos = [customerMember elementsForName:@"ico"];
+        if (icos.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [icos objectAtIndex:0];
+            NSLog(@"ico = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // imageUrl
+        NSArray *imageUrls = [customerMember elementsForName:@"imageUrl"];
+        if (imageUrls.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [imageUrls objectAtIndex:0];
+            resEntity.resImg=firstId.stringValue;
+            NSLog(@"imageUrl = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // intro
+        NSArray *intros = [customerMember elementsForName:@"intro"];
+        if (intros.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [intros objectAtIndex:0];
+            NSLog(@"intro = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // isAllowApp
+        NSArray *isAllowApps = [customerMember elementsForName:@"isAllowApp"];
+        if (isAllowApps.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [isAllowApps objectAtIndex:0];
+            NSLog(@"isAllowApp = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // isAudit
+        NSArray *isAudits = [customerMember elementsForName:@"isAudit"];
+        if (isAudits.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [isAudits objectAtIndex:0];
+            NSLog(@"isAudit = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // isDoubleScore
+        NSArray *isDoubleScores = [customerMember elementsForName:@"isDoubleScore"];
+        if (isDoubleScores.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [isDoubleScores objectAtIndex:0];
+            NSLog(@"isDoubleScore = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // isRecommed
+        NSArray *isRecommeds = [customerMember elementsForName:@"isRecommed"];
+        if (isRecommeds.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [isRecommeds objectAtIndex:0];
+            NSLog(@"isRecommed = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // lastSMS
+        NSArray *lastSMSes = [customerMember elementsForName:@"lastSMS"];
+        if (lastSMSes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [lastSMSes objectAtIndex:0];
+            NSLog(@"lastSMS = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // latitude
+        NSArray *latitudes = [customerMember elementsForName:@"latitude"];
+        if (latitudes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [latitudes objectAtIndex:0];
+            NSLog(@"latitude = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // license
+        NSArray *licenses = [customerMember elementsForName:@"license"];
+        if (licenses.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [licenses objectAtIndex:0];
+            NSLog(@"license = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // longitude
+        NSArray *longitudes = [customerMember elementsForName:@"longitude"];
+        if (longitudes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [longitudes objectAtIndex:0];
+            NSLog(@"longitude = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // name
+        NSArray *names = [customerMember elementsForName:@"name"];
+        if (names.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [names objectAtIndex:0];
+            resEntity.resNameTxt=firstId.stringValue;
+            NSLog(@"name = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // payment
+        NSArray *payments = [customerMember elementsForName:@"payment"];
+        if (payments.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [payments objectAtIndex:0];
+            NSLog(@"payment = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // phone
+        NSArray *phones = [customerMember elementsForName:@"phone"];
+        if (phones.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [phones objectAtIndex:0];
+            resEntity.ResTelTxt=firstId.stringValue;
+            NSLog(@"phone = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // score
+        NSArray *scores = [customerMember elementsForName:@"score"];
+        if (scores.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [scores objectAtIndex:0];
+            NSLog(@"score = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdArea
+        NSArray *sdAreas = [customerMember elementsForName:@"sdArea"];
+        if (sdAreas.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdAreas objectAtIndex:0];
+            NSLog(@"sdArea = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdAreaCode
+        NSArray *sdAreaCodes = [customerMember elementsForName:@"sdAreaCode"];
+        if (sdAreaCodes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdAreaCodes objectAtIndex:0];
+            NSLog(@"sdAreaCode = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdDeposit
+        NSArray *sdDeposits = [customerMember elementsForName:@"sdDeposit"];
+        if (sdDeposits.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdDeposits objectAtIndex:0];
+            NSLog(@"sdDeposit = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdMessageCode
+        NSArray *sdMessageCodes = [customerMember elementsForName:@"sdMessageCode"];
+        if (sdMessageCodes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdMessageCodes objectAtIndex:0];
+            NSLog(@"sdMessageCode = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdRegion
+        NSArray *sdRegions = [customerMember elementsForName:@"sdRegion"];
+        if (sdRegions.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdRegions objectAtIndex:0];
+            NSLog(@"sdRegion = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // sdRegionCode
+        NSArray *sdRegionCodes = [customerMember elementsForName:@"sdRegionCode"];
+        if (sdRegionCodes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sdRegionCodes objectAtIndex:0];
+            NSLog(@"sdRegionCode = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // status
+        NSArray *statuses = [customerMember elementsForName:@"status"];
+        if (statuses.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [statuses objectAtIndex:0];
+            NSLog(@"status = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // totalSMS
+        NSArray *totalSMSes = [customerMember elementsForName:@"totalSMS"];
+        if (totalSMSes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [totalSMSes objectAtIndex:0];
+            NSLog(@"totalSMS = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // workTime
+        NSArray *workTimes = [customerMember elementsForName:@"workTime"];
+        if (workTimes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [workTimes objectAtIndex:0];
+            NSLog(@"workTime = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        // mPhone
+        NSArray *mPhones = [customerMember elementsForName:@"mPhone"];
+        if (mPhones.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [mPhones objectAtIndex:0];
+            NSLog(@"mPhone = %@", firstId.stringValue);
+        } else {
+            
+        }
+         [restaurants addObject:resEntity];
+    }
+    return restaurants;
+}
+
++ (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    NSLog(@"%@",error.localizedDescription);
+}
+
++(NSMutableArray *)testServiceLogin
+{
+    NSString *webserviceUrl = [WEBSERVICE_ADDRESS stringByAppendingString:@"customerRegister"];
+    NSURL *url = [NSURL URLWithString:webserviceUrl];
+    NSLog(@"%@", url);
+    NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\
+                             <soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\
+                             <soap:Body>\
+                             <login xmlns:ns2=\"http://service.d3rim.czuft.com/\">\
+                             <arg0>%@</arg0>\
+                             <arg1>%@</arg1>\
+                             </login>\
+                             </soap:Body>\
+                             </soap:Envelope>", @"18068562275", @"19810327jj"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request addRequestHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
+    [request addRequestHeader:@"SOAPAction" value:@""];
+    [request addRequestHeader:@"Content-Length" value:msgLength];
+    [request setRequestMethod:@"POST"];
+    [request appendPostData:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    //同步调用
+    [request startSynchronous];
+    
+    NSData *responseData = [request responseData];
+    
+    NSError *error;
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:responseData options:0 error:&error];
+    NSArray *userInfomations = [doc.rootElement nodesForXPath:@"//return" error:&error];
+    NSLog(@"%@", [doc rootElement]);
+    
+    NSMutableArray *users=[[NSMutableArray alloc] init];
+    
+    for (GDataXMLElement *userInfomation in userInfomations) {
+        
+        UserEntity *userEntity=[[UserEntity alloc] init];
+        
+        //devote
+        NSArray *devotes = [userInfomation elementsForName:@"devote"];
+        if (devotes.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [devotes objectAtIndex:0];
+            userEntity.userDevote=firstId.stringValue;
+            
+            NSLog(@"devote = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        //flag
+        NSArray *flags = [userInfomation elementsForName:@"flag"];
+        if (flags.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [flags objectAtIndex:0];
+            userEntity.userFlag=firstId.stringValue;
+            NSLog(@"flag = %@", firstId.stringValue);
+        } else {
+            
+        }
+        //isActive
+        NSArray *isActives = [userInfomation elementsForName:@"isActive"];
+        if (isActives.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [isActives objectAtIndex:0];
+            userEntity.userIsActive=firstId.stringValue;
+            NSLog(@"isActive = %@", firstId.stringValue);
+        } else {
+            
+        }
+
+        //nickName
+        NSArray *nickNames = [userInfomation elementsForName:@"nickName"];
+        if (nickNames.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [nickNames objectAtIndex:0];
+            userEntity.userNickName=firstId.stringValue;
+            NSLog(@"nickName = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        //score
+        NSArray *scores = [userInfomation elementsForName:@"score"];
+        if (scores.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [scores objectAtIndex:0];
+            userEntity.userScore=firstId.stringValue;
+            NSLog(@"score = %@", firstId.stringValue);
+        } else {
+            
+        }
+        
+        //sex
+        NSArray *sexs = [userInfomation elementsForName:@"sex"];
+        if (sexs.count > 0) {
+            GDataXMLElement *firstId = (GDataXMLElement *) [sexs objectAtIndex:0];
+            userEntity.userSex=firstId.stringValue;
+            NSLog(@"sex = %@", firstId.stringValue);
+        } else {
+            
+        }
+        [users addObject:userEntity];
+    }
+    return users;
+
+}
+
+@end

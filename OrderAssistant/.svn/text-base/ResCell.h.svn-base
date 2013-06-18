@@ -1,0 +1,33 @@
+//
+//  ResCell.h
+//  OrderAssistant
+//
+//  Created by flybird on 12-10-31.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ResCell : UITableViewCell{
+    UILabel *resNameLbl;
+    UILabel *resPriceLbl;
+    UILabel *resTypeLbl;
+    UILabel *resDistanceLbl;
+    UILabel *resPriceTitleLbl;
+    UIImageView *resImgView;
+    UIImageView *resStarImgView;
+//    UIImageView *backgroundImgView;
+
+}
+
+@property(nonatomic,retain) IBOutlet UILabel *resNameLbl;
+@property(nonatomic,retain) IBOutlet UILabel *resPriceLbl;
+@property(nonatomic,retain) IBOutlet UILabel *resTypeLbl;
+@property(nonatomic,retain) IBOutlet UILabel *resDistanceLbl;
+@property(nonatomic,retain) IBOutlet UILabel *resPriceTitleLbl;
+@property(nonatomic,retain) IBOutlet UIImageView *resImgView;
+@property(nonatomic,retain) IBOutlet UIImageView *resStarImgView;
+//@property(nonatomic,retain) IBOutlet UIImageView *backgroundImgView;
+
+
+@end

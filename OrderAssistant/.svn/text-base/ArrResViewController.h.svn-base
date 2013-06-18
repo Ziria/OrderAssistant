@@ -1,0 +1,77 @@
+//
+//  ArrResViewController.h
+//  OrderAssistant
+//
+//  Created by flybird on 12-10-29.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "ViewController.h"
+#import "ResCell.h"
+#import "ResEntity.h"
+#import "PopoverView.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "PersonalViewController.h"
+
+
+
+@interface ArrResViewController : ViewController<UITableViewDataSource,UITableViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIActionSheetDelegate,PopoverViewDelegate,CLLocationManagerDelegate,MKMapViewDelegate, UITabBarControllerDelegate, UITabBarDelegate>{
+    UIButton *distantBtn;
+    UIButton *hotelBtn;
+    UIButton *recommandBtn;
+
+    ResCell  *rescell;
+    ResEntity *resEntity;
+    NSMutableArray *resentities;
+    UITableView *tableviewCustom;
+
+    UIActionSheet *actionSheet;
+    UILabel *distantLable;
+    UILabel *hotelLable;
+    UILabel *recommandLable;
+    NSArray *myPickerData1;
+    NSArray *myPickerData2;
+    NSString *result;
+    
+    int btnChoice;
+    
+    CLLocationManager *locationManager;
+    CLLocationCoordinate2D curLocation;
+    UITabBar *tabBar;
+    UITabBarController *tabBarController;
+    UINavigationItem *item;
+    
+    PersonalViewController *personalViewController;
+    ArrResViewController *arrResViewController;
+}
+
+@property (nonatomic, retain) IBOutlet UIButton *distantBtn;
+@property (nonatomic, retain) IBOutlet UIButton *hotelBtn;
+@property (nonatomic, retain) IBOutlet UIButton *recommandBtn;
+@property (nonatomic, retain) ResCell  *rescell;
+@property (nonatomic, retain) ResEntity *resEntity;
+@property (nonatomic, retain) NSMutableArray *resentities;
+@property (nonatomic, retain) IBOutlet UITableView *tableviewCustom;
+
+@property (nonatomic, retain) IBOutlet UILabel *distantLable;
+@property (nonatomic, retain) IBOutlet UILabel *hotelLable;
+@property (nonatomic, retain) IBOutlet UILabel *recommandLable;
+@property (nonatomic, retain) NSArray *myPickerData1;
+@property (nonatomic, retain) NSArray *myPickerData2;
+@property (nonatomic, retain) UIActionSheet *actionSheet;
+@property (nonatomic, retain) NSString *result;
+@property (nonatomic) int btnChoice;
+@property (nonatomic, retain) IBOutlet UITabBar *tabBar;
+
+@property (nonatomic, retain) IBOutlet UINavigationItem *item;
+
+@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic) CLLocationCoordinate2D curLocation;
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+- (IBAction)buttonPress:(UIButton *)sender;
+
+
+@end

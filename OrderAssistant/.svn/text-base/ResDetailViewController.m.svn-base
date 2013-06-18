@@ -1,0 +1,164 @@
+//
+//  ResDetailViewController.m
+//  OrderAssistant
+//
+//  Created by flybird on 12-11-1.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "ResDetailViewController.h"
+#import "CommonUtil.h"
+
+@interface ResDetailViewController ()
+@end
+@implementation ResDetailViewController
+
+@synthesize resEntity;
+
+@synthesize ResNameLbl;
+@synthesize ResTasteLbl;
+@synthesize ResEnLbl;
+@synthesize ResServeLbl;
+@synthesize ResOrderLbl;
+@synthesize ResPriceLbl;
+@synthesize ResStarGradeLbl;
+@synthesize ResTasteTitleLbl;
+@synthesize ResPriceTitleLbl;
+@synthesize ResOrderTitleLbl;
+@synthesize ResServeTitleLbl;
+@synthesize ResEnTitleLbl;
+@synthesize ResOrderBtn;
+@synthesize ResPicBtn;
+@synthesize ResImgView;
+@synthesize ResStarImgView;
+
+@synthesize ResInfoLbl;
+@synthesize ResAddressLbl;
+@synthesize ResTelDetailLbl;
+@synthesize ResTelLbl;
+@synthesize ResOtherBtn;
+@synthesize ResAddDetailLbl;
+
+@synthesize  ResCusImgLbl;
+@synthesize ResCusImgDetailLbl;
+
+@synthesize ResMistakeBtn;
+@synthesize ResRoadBtn;
+@synthesize ResTransportBtn;
+
+@synthesize mapNavigationBtn;
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    ResEnTitleLbl.text=@"环境";
+    ResPriceTitleLbl.text=@"人均消费";
+    ResServeTitleLbl.text=@"服务";
+    ResTasteTitleLbl.text=@"口味";
+    ResOrderTitleLbl.text=@"近期订单";
+    ResAddressLbl.text=@"地址：";
+    ResTasteLbl.text=@"电话：";
+    
+    ResNameLbl.text=resEntity.resNameTxt;
+    
+    ResImgView.image=[CommonUtil getImageFromURL:resEntity.resImg];
+  //  ResStarImgView.image=[CommonUtil getImageFromURL:resEntity.resStarImg];
+    
+    ResStarGradeLbl.text=resEntity.ResStarGradeTxt;
+    ResTasteLbl.text=resEntity.ResTasteTxt;
+    ResEnLbl.text=resEntity.ResEnTxt;
+    ResServeLbl.text=resEntity.ResServeTxt;
+    ResOrderLbl.text=resEntity.ResOrderTxt;
+    ResPriceLbl.text=resEntity.resPriceTxt;
+    ResAddDetailLbl.text=resEntity.ResAddressTxt;
+    ResTelDetailLbl.text=resEntity.ResTelTxt;
+    
+    ResInfoLbl.text=@"餐厅信息";
+    ResCusImgLbl.text=@"网友印象";
+    ResCusImgDetailLbl.text=@"在同价位自助中中等水平";
+    ResAddressLbl.text=@"地址：";
+    ResTelLbl.text=@"电话：";
+    
+    
+    [ResOrderBtn addTarget:self action:@selector(showTelOrderAction) forControlEvents:UIControlEventTouchUpInside];
+    [ResPicBtn addTarget:self action:@selector(showPictureAction) forControlEvents:UIControlEventTouchUpInside];
+
+    //[self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rest_detail_bm_1_hot.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"rest_detail_bm_1.png"]];
+    
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)showTelOrderAction
+{
+    UIActionSheet *telActionSheet=[[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"点击预定", @"电话预定", nil];
+    telActionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    telActionSheet.tag=1;
+	[telActionSheet showInView:self.view.window];    
+}
+
+- (void)showPictureAction
+{
+    UIActionSheet *picActionSheet=[[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照传图", @"手机传图", nil];
+	picActionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    picActionSheet.tag=2;
+	[picActionSheet showInView:self.view.window]; 
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    //NSLog(@"%i", buttonIndex);
+    
+    if (actionSheet.tag==1) {
+        if (buttonIndex == actionSheet.cancelButtonIndex) {
+            return;
+        }
+        switch (buttonIndex) {
+            case 0: {
+                NSLog(@"点击预定 Selected");
+                break;
+            }
+            case 1: {
+                NSLog(@"电话预定 Selected");
+                break;
+            }
+        }
+    }
+    
+    if (actionSheet.tag==2) {
+        if (buttonIndex == actionSheet.cancelButtonIndex) {
+            return;
+        }
+        switch (buttonIndex) {
+            case 0: {
+                NSLog(@"拍照传图 Selected");
+                break;
+            }
+            case 1: {
+                NSLog(@"手机传图 Selected");
+                break;
+            }
+        }
+
+    }
+}
+
+@end

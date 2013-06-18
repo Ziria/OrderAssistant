@@ -1,0 +1,30 @@
+//
+//  WebServices.h
+//  OrderAssistant
+//
+//  Created by 潘 群 on 12-11-12.
+//
+//
+
+#import <Foundation/Foundation.h>
+#import "ResEntity.h"
+#import "UserEntity.h"
+
+@interface WebServices : NSObject
+{
+    ResEntity *resEntity;
+    NSMutableArray *restaurants;
+    UserEntity *userEntity;
+    NSMutableArray *users;
+}
+
+@property (nonatomic, retain) ResEntity *resEntity;
+@property (nonatomic, retain) NSMutableArray *restaurants;
+@property (nonatomic, retain) UserEntity *userEntity;
+@property (nonatomic, retain) NSMutableArray *users;
+
+//+(NSMutableArray *) testService:(NSString *)lad :(NSString *)lgd :(NSString *)dis;
++(NSMutableArray *) testService;
++(NSMutableArray *)testServiceLogin;
++(NSMutableArray *) testServiceLogin:(NSString *)myPhone :(NSString *)myPassWord;
+@end

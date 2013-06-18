@@ -1,0 +1,32 @@
+//
+//  UserEntity.h
+//  OrderAssistant
+//
+//  Created by flybird on 12-11-22.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UserEntity : NSObject{
+    NSString *userDevote;
+    NSString *userFlag;
+    NSString *userIsActive;
+    NSString *userNickName;
+    NSString *userScore;
+    NSString *userSex;
+    
+    NSString *userTelphone;
+    NSString *password;
+}
+
+@property(nonatomic,retain)  NSString *userDevote;
+@property(nonatomic,retain)  NSString *userFlag;
+@property(nonatomic,retain)  NSString *userIsActive;
+@property(nonatomic,retain)  NSString *userNickName;
+@property(nonatomic,retain)  NSString *userScore;
+@property(nonatomic,retain)  NSString *userSex;
+
+@property(nonatomic,retain)  NSString *userTelphone;
+@property(nonatomic,retain)  NSString *password;
+@end

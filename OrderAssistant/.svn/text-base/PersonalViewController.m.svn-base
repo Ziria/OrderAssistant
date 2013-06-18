@@ -1,0 +1,78 @@
+//
+//  PersonalViewController.m
+//  OrderAssistant
+//
+//  Created by flybird on 12-11-21.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "PersonalViewController.h"
+#import "WebServices.h"
+
+@interface PersonalViewController ()
+
+@end
+
+@implementation PersonalViewController
+
+@synthesize userNameText;
+@synthesize passwordText;
+@synthesize loginBtn;
+@synthesize forgetPassWordBtn;
+@synthesize userEntity;
+@synthesize users;
+@synthesize registerBtn;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //self.navigationController.navigationBar.topItem.title = @"注册";
+    //login界面手机号码，密码框内的提示
+    userNameText.placeholder=@"请输入手机号码";
+    passwordText.placeholder=@"请输入密码";
+    
+    //users=[WebServices testServiceLogin];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+//判断输入号码，密码后点击登录后的状态
+- (void)loginJudgement
+{
+    userEntity=[users objectAtIndex:0];
+    
+}
+
+//在ASCII码状态下，输入完成后点击键盘上的return按钮，键盘消失
+- (IBAction)textFieldDoneEditing:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+//输入完成后再次点击输入框的背景 键盘消失
+- (IBAction)backgroundTap:(id)sender
+{
+    [userNameText resignFirstResponder];
+    [passwordText resignFirstResponder];
+}
+
+@end

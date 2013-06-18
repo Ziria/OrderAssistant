@@ -1,0 +1,36 @@
+//
+//  PersonalViewController.h
+//  OrderAssistant
+//
+//  Created by flybird on 12-11-21.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "UserEntity.h"
+
+@interface PersonalViewController : UIViewController{
+    UITextField *userNameText;
+    UITextField *passwordText;
+    UIButton *loginBtn;
+    UIButton *forgetPassWordBtn;
+    UIButton *registerBtn;
+    
+    UserEntity *userEntity;
+    NSMutableArray *users;
+}
+
+@property (nonatomic, retain) IBOutlet UITextField *userNameText;
+@property (nonatomic, retain) IBOutlet UITextField *passwordText;
+@property (nonatomic, retain) IBOutlet UIButton *loginBtn;
+@property (nonatomic, retain) IBOutlet UIButton *forgetPassWordBtn;
+@property (nonatomic, retain) IBOutlet UIButton *registerBtn;
+@property (nonatomic, retain) UserEntity *userEntity;
+@property (nonatomic, retain) NSMutableArray *users;
+
+- (IBAction)textFieldDoneEditing:(id)sender;
+- (IBAction)backgroundTap:(id)sender;
+
+- (void)loginJudgement;
+
+@end

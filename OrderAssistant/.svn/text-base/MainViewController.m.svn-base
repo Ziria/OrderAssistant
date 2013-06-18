@@ -1,0 +1,158 @@
+//
+//  MainViewController.m
+//  OrderAssistant
+//
+//  Created by flybird on 12-10-26.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "MainViewController.h"
+#import "PopoverView.h"
+#import "MenuView.h"
+#import "WebServices.h"
+#import "ArrResViewController.h"
+#import "PersonalViewController.h"
+
+@interface MainViewController ()
+
+@end
+
+@implementation MainViewController
+
+@synthesize topButton;
+@synthesize bottomButton;
+@synthesize arrowButton;
+@synthesize expanding;
+@synthesize curLocation;
+@synthesize locationManager;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    self.navigationController.navigationBar.topItem.title = @"唔要吃 － 常州站";
+    UIImage *buttonImage = [[UIImage imageNamed:@"main_queryview_btn_bg.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    UIImage *buttonPressedImage = [[UIImage imageNamed:@"main_queryview_btn_bg.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    [topButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [topButton setBackgroundImage:buttonPressedImage forState:UIControlStateHighlighted];
+    CGRect buttonFrame = [topButton frame];
+    buttonFrame.size.width = buttonImage.size.width + 210;
+    buttonFrame.size.height = buttonImage.size.height;
+    [topButton setFrame:buttonFrame];
+    
+    //[WebServices testService];
+    
+    //[WebServices testServiceLogin];
+    
+    [self getCurPosition];
+    [self locationManager];
+}
+
+
+//获得自己的当前的位置信息
+- (void) getCurPosition
+{
+	//开始探测自己的位置
+	if (locationManager == nil)
+	{
+		locationManager =[[CLLocationManager alloc] init];
+	}
+	
+	if ([CLLocationManager locationServicesEnabled])
+	{
+		locationManager.delegate = self;
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+		locationManager.distanceFilter = kCLLocationAccuracyHundredMeters;
+		[locationManager startUpdatingLocation];
+	}
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	// Get all regions being monitored for this application.
+	
+}
+
+//响应当前位置的更新，在这里记录最新的当前位置
+- (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
+			fromLocation:(CLLocation *)oldLocation
+{
+    NSTimeInterval interval = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
+    NSLog(@"%lf", interval);
+    //保存新位置
+    curLocation = newLocation.coordinate;
+    if (oldLocation == nil) {
+        NSString *lad=[NSString stringWithFormat:@"%f", newLocation.coordinate.latitude];
+        NSString *lgd=[NSString stringWithFormat:@"%f", newLocation.coordinate.longitude];
+        NSLog(@"latitude === %@", lad);
+        NSLog(@"longitude === %@", lgd);
+    }
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+//弹出视图
+- (IBAction)menuButton:(id)sender
+{
+    float angle = self.isExpanding ? -M_PI : 0.0f;
+    [UIView animateWithDuration:0.1f animations:^{
+        arrowButton.transform = CGAffineTransformMakeRotation(angle);
+    }];
+    
+    CGPoint point = CGPointMake(160.0, 360.0);
+    MenuView *menuView = [[MenuView alloc] initWithFrame:CGRectMake(0, 0, 280, 120)];
+    [PopoverView showPopoverAtPoint:point inView:self.view withContentView:menuView delegate:self];
+
+}
+
+- (BOOL)isExpanding
+{
+    if (expanding) {
+        expanding = NO;
+    } else {
+        expanding = YES;
+    }
+    return expanding;
+}
+
+- (void)popoverViewDidDismiss:(PopoverView *)popoverView {
+    float angle = self.isExpanding ? -M_PI : 0.0f;
+    [UIView animateWithDuration:0.1f animations:^{
+        arrowButton.transform = CGAffineTransformMakeRotation(angle);
+    }];
+}
+
+- (void)popoverView:(PopoverView *)popoverView didSelectItemAtIndex:(NSInteger)index {
+    NSLog(@"345");
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{    
+    UITabBarController *tabBarController = segue.destinationViewController;
+    tabBarController.title=@"附近餐厅";
+    tabBarController.selectedIndex = 0;
+    tabBarController.delegate = self;
+    //[self.navigationController pushViewController:tabBarController animated:YES];
+
+}
+
+
+
+
+@end

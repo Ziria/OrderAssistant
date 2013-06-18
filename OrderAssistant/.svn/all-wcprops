@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/HZOA/!svn/ver/52/OrderAssistant/OrderAssistant
+END
+ResCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResCell.h
+END
+main.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/main.m
+END
+ResEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResEntity.m
+END
+ArrFoodViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ArrFoodViewController.h
+END
+CommonUtil.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/CommonUtil.m
+END
+ArrResViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/HZOA/!svn/ver/51/OrderAssistant/OrderAssistant/ArrResViewController.h
+END
+ResCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResCell.m
+END
+ArrFoodViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ArrFoodViewController.m
+END
+ArrResViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/HZOA/!svn/ver/51/OrderAssistant/OrderAssistant/ArrResViewController.m
+END
+UserEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/UserEntity.h
+END
+UserEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/UserEntity.m
+END
+OrderResViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/OrderResViewController.h
+END
+PreferentialInformationViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/PreferentialInformationViewController.h
+END
+OrderResViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/OrderResViewController.m
+END
+PreferentialInformationViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/PreferentialInformationViewController.m
+END
+ResCommentsViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResCommentsViewController.h
+END
+ShareViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ShareViewController.h
+END
+OrderAssistant-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/OrderAssistant-Info.plist
+END
+ResCommentsViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResCommentsViewController.m
+END
+SearchViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/SearchViewController.h
+END
+EncourageCheckViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/EncourageCheckViewController.h
+END
+ShareViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ShareViewController.m
+END
+SearchViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/SearchViewController.m
+END
+EncourageCheckViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/EncourageCheckViewController.m
+END
+ResDetailViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResDetailViewController.h
+END
+AppDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/AppDelegate.h
+END
+ViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ViewController.h
+END
+ResDetailViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResDetailViewController.m
+END
+AppDelegate.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/AppDelegate.m
+END
+WebServices.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/WebServices.h
+END
+PersonalViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/PersonalViewController.h
+END
+MainViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/HZOA/!svn/ver/50/OrderAssistant/OrderAssistant/MainViewController.h
+END
+OrderAssistant-Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/OrderAssistant-Prefix.pch
+END
+ViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ViewController.m
+END
+ResEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/ResEntity.h
+END
+CommonUtil.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/CommonUtil.h
+END
+WebServices.m
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/HZOA/!svn/ver/41/OrderAssistant/OrderAssistant/WebServices.m
+END
+PersonalViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/HZOA/!svn/ver/50/OrderAssistant/OrderAssistant/PersonalViewController.m
+END
+MainViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/HZOA/!svn/ver/53/OrderAssistant/OrderAssistant/MainViewController.m
+END
